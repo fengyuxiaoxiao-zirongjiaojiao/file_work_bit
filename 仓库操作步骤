@@ -1,0 +1,17 @@
+1、安装git
+2、配置git账号
+3、生成ssh key生成过程中一路回车就可以了）
+4、关联github账号或者其他的仓库例如CODING
+5、验证是否成功链接，CODING的验证方式ssh -T git@git.coding.net
+
+
+以上是一般的操作，操作链接可参考：https://www.cnblogs.com/poloblog/p/12945201.html；https://blog.csdn.net/qq_34942306/article/details/104585821
+
+下面这是针对曾龙开发的，需要注意的事项：
+1、将曾龙那里的仓库连接下拉之后，通过git status显示有错误；
+2、需要进入libuavcan这个文件，然后通过下拉的方式将库文件更新，操作指令如下：
+cd src/drivers/uavcan/libuavcan/		#这是进入文件夹
+git remote add ifc https://e.coding.net/ifccq/aerocar/libuavcan.git	#这是更新库文件
+
+
+温馨提示：git pull的指令会直接将服务器的分支跟本地分支合并，有一些风险，比如合并了不期望的内容，建议还是git fetch以后，先检查一下服务器的分支跟本地分支的区别，再进行合并

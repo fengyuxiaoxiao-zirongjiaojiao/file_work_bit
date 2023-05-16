@@ -1,0 +1,51 @@
+1、重新安装ubuntu；
+2、添加用户到dialout工作组
+将你创建的用户加入到用户组dialout中去，注销后重新登录。创建独立用户的目的是这样可以让开发环境分离开来，避免出现不同用户间的版本冲突等情况。将用户加入dialout用户组的目的是dialout拥有对串口tty的操作权限。
+指令：sudo usermod -a -G dialout $USER
+3、注销重新登录
+4、安装PX4(这个步骤是科学上网实现的，如果不能科学上网就将PX4的连接改为国内的镜像)
+(1)先安装git
+指令：sudo apt install git
+(2)安装PX4代码
+指令：git clone https://github.com/PX4/PX4-Autopilot.git --recursive
+
+这一步可能出现有子模块无法下载的现象，无需担心
+5、运行bash脚本
+指令：bash ./PX4-Autopilot/Tools/setup/ubuntu.sh
+6、重启计算机
+7、安装工具
+(1)安装gcc编译器
+指令：sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+(2)安装make
+指令：sudo apt install make
+(3)安装pip3
+指令：sudo apt install python3-pip
+(4)安装其他
+指令：sudo apt install ninja-build exiftool ninja-build protobuf-compiler libeigen3-dev genromfs xmlstarlet libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev python3-pip
+
+
+8、安装ROS
+参照官网教程：http://wiki.ros.org/cn/Installation/Ubuntu
+输入命令
+
+sudo apt install ros-noetic-desktop-full
+
+遇到这样的问题
+
+下列软件包有未满足的依赖关系：
+ros-neotic-desktop-full :
+依赖: ros-neotic-desktop 但是它将不会被安装
+依赖: ros-neotic-perception 但是它将不会被安装
+依赖: ros-neotic-simulators 但是它将不会被安装
+E: 无法修正错误，因为您要求某些软件包保持现状，就是它们破坏了软件包间的依赖关系。
+
+尽量不要使用sudo apt install aptitude下载aptitude 再用sudo aptitude install这个命令
+这个是会自动配置依赖问题，但有的时候他的方案，在安装一些依赖的同时会删除其他依赖，导致其他依赖丢失，使好多东西不能用了，上一次我就这么做了导致重装系统
+
+以上问题需要将软件和更新里的更新-订阅，设置为所有更新，然后关闭更新后再次输入命令即可
+
+9、安装QGC
+参照官网连接：https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html
+
+
+

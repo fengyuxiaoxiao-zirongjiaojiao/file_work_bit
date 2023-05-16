@@ -1,0 +1,3 @@
+1、直接打开终端，输入：roslaunch mavros px4.launch 
+2、打开新的终端，输入：rostopic pub -r 10 /mavros/mount_control/command mavros_msgs/MountControl "header:  。。。。然后修改数值
+3、订阅话题，打开新的终端，输入：rostopic echo /mavros/mount_control/command 
